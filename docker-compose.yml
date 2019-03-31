@@ -21,6 +21,12 @@ services:
 
   node:
     image: node:current-alpine
+    links:
+      - mongo
+      - mariadb
+    depends_on:
+      - mongo
+      - mariadb
     command: "npm start"
 
 volumes:
