@@ -1,0 +1,28 @@
+version: '3'
+services:
+  mongo:
+    image: mongo:latest
+    volumes:
+      - nosql-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+
+  mariadb:
+    image: mariadb
+    volumes:
+      - sql-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_DB}
+
+  node:
+    image: node:current-alpine
+    command: "npm start"
+
+volumes:
+  nosql-data: {}
+  sql-data: {}
