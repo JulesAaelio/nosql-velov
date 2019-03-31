@@ -9,8 +9,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
       MONGO_INITDB_DATABASE: ${MONGO_DB}
 
-  mariadb:
-    image: mariadb
+  mysql:
+    image: mysql
     volumes:
       - sql-data:/var/lib/mysql
     environment:
