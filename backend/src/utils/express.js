@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('backend/src/utils/express');
 const cors = require('cors');
 
 const app = new express();
