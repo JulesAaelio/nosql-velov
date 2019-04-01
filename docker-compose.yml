@@ -36,6 +36,20 @@ services:
     working_dir: /data/app
     command: "npm start"
 
+  importer:
+    image: node:current-alpine
+      links:
+        - mongo
+        - mariadb
+      depends_on:
+        - mongo
+        - mariadb
+      volumes:
+        - ./:/data/app
+      working_dir: /data/app
+      command: "npm import"
+
+
 volumes:
   nosql-data: {}
   sql-data: {}
