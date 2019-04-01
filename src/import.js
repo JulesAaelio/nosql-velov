@@ -30,6 +30,13 @@ importStations = async (mysql, mongo) => {
 
     await mongo.collection('velov').deleteMany({});
     mongo.collection('velov').insertMany(response.features).then(() => {
+
+        mongo.collection('velov').createIndex(
+            {
+                "geometry.coordinates" : "2dsphere",
+            }
+        );
+
         console.log('Velov stations imported to mongo database successfully')
     });
 
@@ -77,6 +84,12 @@ importInterestPoint = async (mysql, mongo) => {
                 "properties.nom" : "text",
             }
         );
+        mongo.collection('interest_points').createIndex(
+            {
+                "geometry.coordinates" : "2dsphere",
+            }
+        );
+
         console.log('Interest points imported to mongo database successfully')
     });
     
