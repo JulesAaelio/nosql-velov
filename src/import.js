@@ -72,8 +72,15 @@ importInterestPoint = async (mysql, mongo) => {
 
     await mongo.collection('interest_points').deleteMany({});
     mongo.collection('interest_points').insertMany(response.features).then(() => {
+        mongo.collection('interest_points').createIndex(
+            {
+                "properties.nom" : "text",
+            }
+        );
         console.log('Interest points imported to mongo database successfully')
     });
+    
+
 
     // Flush tables;
     await mysql.InterestPoint.destroy({where:{}});
