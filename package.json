@@ -2,9 +2,9 @@
   "name": "nosql-velov",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/index.js",
     "import": "node src/import.js"
   },
   "repository": {
@@ -23,7 +23,10 @@
   },
   "homepage": "https://github.com/JulesAaelio/nosql-velov#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "dotenv": "^7.0.0",
+    "express": "^4.16.4",
     "mongodb": "^3.2.2",
     "mysql2": "^1.6.5",
     "request": "^2.88.0",
