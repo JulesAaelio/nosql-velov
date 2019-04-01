@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "import": "node src/import.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,14 @@
   "bugs": {
     "url": "https://github.com/JulesAaelio/nosql-velov/issues"
   },
-  "homepage": "https://github.com/JulesAaelio/nosql-velov#readme"
+  "homepage": "https://github.com/JulesAaelio/nosql-velov#readme",
+  "dependencies": {
+    "dotenv": "^7.0.0",
+    "mongodb": "^3.2.2",
+    "mysql2": "^1.6.5",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7",
+    "sequelize": "^5.2.8",
+    "sequelize-require-models": "^0.1.0"
+  }
 }
