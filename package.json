@@ -27,6 +27,7 @@
     "mysql2": "^1.6.5",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7",
-    "sequelize": "^5.2.8"
+    "sequelize": "^5.2.8",
+    "sequelize-require-models": "^0.1.0"
   }
 }
