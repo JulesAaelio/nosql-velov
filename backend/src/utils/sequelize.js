@@ -1,4 +1,4 @@
-const sequelize = require('backend/src/utils/sequelize');
+const sequelize = require('sequelize');
 const requireModels = require('sequelize-require-models');
 
 const db = new sequelize(process.env.MYSQL_DB, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, {
