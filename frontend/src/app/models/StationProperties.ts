@@ -1,5 +1,5 @@
 export class StationProperties {
-  number: string;
+  number: number;
   name: string;
   available_bike_stands: number;
   available_bikes: number;

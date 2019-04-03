@@ -8,7 +8,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
   MatAutocompleteModule,
   MatButtonModule,
-  MatInputModule,
+  MatInputModule, MatSortModule,
   MatTableModule,
   MatToolbarModule
 } from "@angular/material";
@@ -16,12 +16,15 @@ import {HttpClientModule} from "@angular/common/http";
 import { HomeComponent } from './home/home.component';
 import {ApiService} from "./api.service";
 import {Form, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { StationsTableComponent } from './stations-table/stations-table.component';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent
+    HomeComponent,
+    StationsTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import {Form, FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatInputModule,
     MatAutocompleteModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSortModule
   ],
   providers: [
     ApiService

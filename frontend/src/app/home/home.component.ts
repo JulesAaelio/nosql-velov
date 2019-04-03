@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
 
   stations: Station[] = [];
   places: Place[] = [];
-  displayedColumns: string[] = ['number', 'name', 'available_bike_stands', 'available_bikes'];
   searchControl = new FormControl();
 
   ngOnInit() {
@@ -45,7 +44,9 @@ export class HomeComponent implements OnInit {
 
 
   displayFn(place?: Place): string | undefined {
-    return place ? `${place.properties.nom} - ${place.properties.adresse}` : undefined;
+    return place ? `${place.properties.nom} - ${place.properties.adresse}, ${place.properties.codepostal} ${place.properties.commune}` : undefined;
   }
+
+
 
 }

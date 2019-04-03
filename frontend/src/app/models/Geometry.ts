@@ -1,4 +1,4 @@
 export class Geometry {
   type:string;
-  coordinates: []
+  coordinates: Array<any>
 }
