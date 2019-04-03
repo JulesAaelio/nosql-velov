@@ -1,29 +1,24 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {ApiService} from "../api.service";
 import {Station} from "../models/Station";
 import {Place} from "../models/Place";
 import {FormControl} from "@angular/forms";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-stations-near',
+  templateUrl: './stations-near.component.html',
+  styleUrls: ['./stations-near.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class StationsNearComponent implements OnInit {
 
-  constructor(private api: ApiService) {
-  }
+  constructor(private api: ApiService) {}
 
   stations: Station[] = [];
   places: Place[] = [];
   searchControl = new FormControl();
 
   ngOnInit() {
-    this.api.getAllStations().subscribe((stations) => {
-      this.stations = stations;
-    });
-
-    this.searchControl.valueChanges.subscribe((value) => {
+   this.searchControl.valueChanges.subscribe((value) => {
       this.filterPlaces(value)
     })
   }
@@ -41,12 +36,8 @@ export class HomeComponent implements OnInit {
     })
   }
 
-
-
   displayFn(place?: Place): string | undefined {
     return place ? `${place.properties.nom} - ${place.properties.adresse}, ${place.properties.codepostal} ${place.properties.commune}` : undefined;
   }
-
-
 
 }

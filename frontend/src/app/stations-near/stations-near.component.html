@@ -12,5 +12,5 @@
   </mat-form-field>
 </form>
 
-<app-stations-table [stations]="stations"></app-stations-table>
+<app-stations-table *ngIf="stations.length > 0" [stations]="stations" [displayDistance]="true"></app-stations-table>
 

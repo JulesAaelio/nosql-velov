@@ -24,7 +24,9 @@ export class StationsTableComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
-
+    if(this.displayDistance) {
+      this.displayedColumns.push('distance')
+    }
   }
 
   ngOnChanges(): void {
@@ -36,9 +38,7 @@ export class StationsTableComponent implements OnInit, OnChanges {
     this.tableDataSource.sort = this.sort;
 
 
-    if(this.displayDistance) {
-      this.displayedColumns.push('distance')
-    }
+
   }
 
   getProperty(target, keys) {

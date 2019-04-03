@@ -13,18 +13,19 @@ import {
   MatToolbarModule
 } from "@angular/material";
 import {HttpClientModule} from "@angular/common/http";
-import { HomeComponent } from './home/home.component';
 import {ApiService} from "./api.service";
-import {Form, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { StationsTableComponent } from './stations-table/stations-table.component';
-import { TestComponent } from './test/test.component';
+import { AllStationsComponent } from './all-stations/all-stations.component';
+import { StationsNearComponent } from './stations-near/stations-near.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HomeComponent,
     StationsTableComponent,
+    AllStationsComponent,
+    StationsNearComponent,
   ],
   imports: [
     BrowserModule,

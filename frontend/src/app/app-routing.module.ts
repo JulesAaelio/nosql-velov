@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomeComponent} from "./home/home.component";
+import {AllStationsComponent} from "./all-stations/all-stations.component";
+import {StationsNearComponent} from "./stations-near/stations-near.component";
 
 const routes: Routes = [
-  { path:'', component: HomeComponent}
+  { path:'', redirectTo:'stations/all', pathMatch: 'full'},
+  { path:'stations/all', component: AllStationsComponent},
+  { path:'stations/near', component: StationsNearComponent}
 ];
 
 @NgModule({
