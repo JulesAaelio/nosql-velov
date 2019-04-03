@@ -1,3 +1,40 @@
-<p>
-  home works!
-</p>
+<form class="example-form">
+  <mat-form-field id="search_bar">
+    <input type="text" placeholder="Pick one" aria-label="Number" [formControl]="searchControl" matInput [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onOptionSelected($event)">
+      <mat-option *ngFor="let place of places" [value]="place" >
+        {{displayFn(place)}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+{{searchControl.value}}
+
+
+<table mat-table [dataSource]="stations" class="mat-elevation-z8">
+  <ng-container matColumnDef="number">
+    <th mat-header-cell *matHeaderCellDef> N°  </th>
+    <td mat-cell *matCellDef="let station"> {{station.properties.number}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let station"> {{station.properties.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="available_bike_stands">
+    <th mat-header-cell *matHeaderCellDef> Places disponibles </th>
+    <td mat-cell *matCellDef="let station"> {{station.properties.available_bike_stands}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="available_bikes">
+    <th mat-header-cell *matHeaderCellDef> Vélos disponibles </th>
+    <td mat-cell *matCellDef="let station"> {{station.properties.available_bikes}} </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
