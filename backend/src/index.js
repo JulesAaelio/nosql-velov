@@ -4,7 +4,7 @@ const app = require('./utils/express');
 (async () => {
 
     const mongo = await require('./utils/mongo')();
-    const mysql = require('./utils/sequelize');
+    const mysql = await require('./utils/sequelize')();
 
     app.use('/stations',require('./endpoints/stations')(mongo));
     app.use('/places',require('./endpoints/places')(mongo));

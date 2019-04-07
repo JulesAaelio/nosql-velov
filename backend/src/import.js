@@ -6,7 +6,7 @@ const request = require('request-promise-native');
 (async () => {
 
     const mongo = await require('./utils/mongo')();
-    const mysql = require('./utils/sequelize');
+    const mysql = await require('./utils/sequelize')();
 
     importStations(mysql, mongo);
     setInterval(() => {

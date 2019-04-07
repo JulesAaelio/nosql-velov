@@ -1,15 +1,51 @@
-version: '3'
+version: '3.4'
 services:
   mongo:
     image: mongo:latest
     volumes:
       - nosql-data:/data/db
-    ports:
-      - 26000:27017
+    networks:
+      - main
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
       MONGO_INITDB_DATABASE: ${MONGO_DB}
+    command: ["mongod","--replSet", "rs0"]
+
+  mongo-1:
+    image: mongo:latest
+    networks:
+      - main
+    volumes:
+      - nosql-replica-1-data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+    command: ["mongod","--replSet", "rs0"]
+
+
+  mongo-2:
+    image: mongo:latest
+    volumes:
+      - nosql-replica-2-data:/data/db
+    networks:
+      - main
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+    command: ["mongod","--replSet", "rs0"]
+
+
+  mongo-rs-init:
+    image: mongo:latest
+    volumes:
+      - ./.docker/mongo:/scripts
+    networks:
+      - main
+    depends_on:
+      - mongo
+      - mongo-1
+      - mongo-2
+    environment:
+      HOST: mongo
+    entrypoint: "/scripts/entrypoint.sh"
+
 
   mariadb:
     image: mariadb
@@ -17,6 +53,8 @@ services:
       - sql-data:/var/lib/mysql
     ports:
       - 3360:3306
+    networks:
+      - main
     environment:
       MYSQL_DATABASE: ${MYSQL_DB}
       MYSQL_USER: ${MYSQL_USER}
@@ -25,11 +63,10 @@ services:
 
   node:
     image: node:current-alpine
-    links:
-      - mongo
-      - mariadb
+    networks:
+      - main
     depends_on:
-      - mongo
+      - mongo-rs-init
       - mariadb
     volumes:
       - ./:/data/app
@@ -40,9 +77,8 @@ services:
 
   importer:
     image: node:current-alpine
-    links:
-      - mongo
-      - mariadb
+    networks:
+      - main
     depends_on:
       - mongo
       - mariadb
@@ -54,4 +90,8 @@ services:
 
 volumes:
   nosql-data: {}
+  nosql-replica-1-data: {}
+  nosql-replica-2-data: {}
   sql-data: {}
+networks:
+  main: {}
