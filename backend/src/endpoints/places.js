@@ -5,9 +5,10 @@ module.exports = (mongo) => {
 
     router.get('/',(req,res) => {
         mongo.collection('interest_points').find({
-            $text : {
-                $search: req.query.search
-            }
+            "properties.nom" : new RegExp(`.*${req.query.search}.*`)
+            // $text : {
+            //     $search: req.query.search
+            // }
         }).toArray().then((r) => {
             res.send(r);
         });

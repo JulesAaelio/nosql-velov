@@ -71,7 +71,7 @@ importStations = async (mysql, mongo) => {
 
 importInterestPoint = async (mysql, mongo) => {
     console.log('Interest points import started');
-    let response = await request.get('https://download.data.grandlyon.com/wfs/rdata?SERVICE=WFS&VERSION=2.0.0&outputformat=GEOJSON&maxfeatures=30&request=GetFeature&typename=sit_sitra.sittourisme&SRSNAME=urn:ogc:def:crs:EPSG::4171');
+    let response = await request.get('https://download.data.grandlyon.com/wfs/rdata?SERVICE=WFS&VERSION=2.0.0&outputformat=GEOJSON&maxfeatures=1000&request=GetFeature&typename=sit_sitra.sittourisme&SRSNAME=urn:ogc:def:crs:EPSG::4171');
     response = JSON.parse(response);
     if(!response.features) {
         throw "Invalid response received from data server";
