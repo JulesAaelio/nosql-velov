@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  api_endpoint: 'http://localhost:3000'
+  api_endpoint: 'http://localhost:3000',
+  map_key: 'AIzaSyALwZL2BqoHGQmufuYzErCUf52wlpqZc28',
+
 };
 
 /*

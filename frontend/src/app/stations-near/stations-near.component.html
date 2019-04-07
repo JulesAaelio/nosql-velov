@@ -12,6 +12,6 @@
     </mat-autocomplete>
   </mat-form-field>
 </form>
-
+<app-stations-map *ngIf="stations.length > 0" [stations]="stations" [place]="selectedPlace"></app-stations-map>
 <app-stations-table *ngIf="stations.length > 0" [stations]="stations" [displayDistance]="true"></app-stations-table>
 

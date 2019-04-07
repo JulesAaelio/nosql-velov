@@ -16,6 +16,7 @@ export class StationsNearComponent implements OnInit {
   stations: Station[] = [];
   places: Place[] = [];
   searchControl = new FormControl();
+  selectedPlace: Place = null;
 
   ngOnInit() {
    this.searchControl.valueChanges.subscribe((value) => {
@@ -31,6 +32,7 @@ export class StationsNearComponent implements OnInit {
 
   onOptionSelected(event) {
     console.log(event.option.value);
+    this.selectedPlace = event.option.value;
     this.api.getStationNearPlace(event.option.value).subscribe(stations => {
       this.stations = stations;
     })

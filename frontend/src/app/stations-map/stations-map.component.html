@@ -1,0 +1,20 @@
+<agm-map
+  [usePanning]="true"
+  [latitude]="mapcenter.lat"
+  [longitude]="mapcenter.lng"
+  [zoomControl]="false"
+  [zoom]="15">
+  <agm-marker *ngFor="let station of stations" [latitude]="station.geometry.coordinates[1]" [longitude]="station.geometry.coordinates[0]" [iconUrl]="getImage(station)">
+    <agm-info-window [disableAutoPan]="true">
+      <div>
+
+        <i class="fa fa-bicycle"></i> {{station.properties.available_bikes}}
+        <i class="fa fa-parking"></i> {{station.properties.available_bike_stands}}
+      </div>
+      <div>
+        {{station.properties.address}} {{station.properties.commune}}
+      </div>
+    </agm-info-window>
+  </agm-marker>
+  <agm-marker *ngIf="place" [latitude]="place.geometry.coordinates[1]" [longitude]="place.geometry.coordinates[0]" ></agm-marker>
+</agm-map>

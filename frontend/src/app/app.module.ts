@@ -18,6 +18,9 @@ import { FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { StationsTableComponent } from './stations-table/stations-table.component';
 import { AllStationsComponent } from './all-stations/all-stations.component';
 import { StationsNearComponent } from './stations-near/stations-near.component';
+import { AgmCoreModule } from '@agm/core'
+import {environment} from "../environments/environment";
+import { StationsMapComponent } from './stations-map/stations-map.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { StationsNearComponent } from './stations-near/stations-near.component';
     StationsTableComponent,
     AllStationsComponent,
     StationsNearComponent,
+    StationsMapComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,12 @@ import { StationsNearComponent } from './stations-near/stations-near.component';
     MatAutocompleteModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSortModule
+    MatSortModule,
+    AgmCoreModule.forRoot({
+      // please get your own API key here:
+      // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
+      apiKey: environment.map_key
+    }),
   ],
   providers: [
     ApiService
