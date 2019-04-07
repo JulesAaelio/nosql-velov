@@ -1,0 +1,37 @@
+{
+  "name": "nosql-velov",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "import": "node src/import.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulesAaelio/nosql-velov.git"
+  },
+  "keywords": [
+    "nosql",
+    "velov",
+    "ynov"
+  ],
+  "author": "Jules LAURENT <jules.laurent@ynov.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JulesAaelio/nosql-velov/issues"
+  },
+  "homepage": "https://github.com/JulesAaelio/nosql-velov#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "mongodb": "^3.2.2",
+    "mysql2": "^1.6.5",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7",
+    "sequelize": "^5.2.8",
+    "sequelize-require-models": "^0.1.0"
+  }
+}

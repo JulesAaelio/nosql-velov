@@ -1,0 +1,97 @@
+version: '3.4'
+services:
+  mongo:
+    image: mongo:latest
+    volumes:
+      - nosql-data:/data/db
+    networks:
+      - main
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+    command: ["mongod","--replSet", "rs0"]
+
+  mongo-1:
+    image: mongo:latest
+    networks:
+      - main
+    volumes:
+      - nosql-replica-1-data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+    command: ["mongod","--replSet", "rs0"]
+
+
+  mongo-2:
+    image: mongo:latest
+    volumes:
+      - nosql-replica-2-data:/data/db
+    networks:
+      - main
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+    command: ["mongod","--replSet", "rs0"]
+
+
+  mongo-rs-init:
+    image: mongo:latest
+    volumes:
+      - ./.docker/mongo:/scripts
+    networks:
+      - main
+    depends_on:
+      - mongo
+      - mongo-1
+      - mongo-2
+    environment:
+      HOST: mongo
+    entrypoint: "/scripts/entrypoint.sh"
+
+
+  mariadb:
+    image: mariadb
+    volumes:
+      - sql-data:/var/lib/mysql
+    ports:
+      - 3360:3306
+    networks:
+      - main
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DB}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+  node:
+    image: node:current-alpine
+    networks:
+      - main
+    depends_on:
+      - mongo-rs-init
+      - mariadb
+    volumes:
+      - ./:/data/app
+    ports:
+      - ${API_PORT}:${API_PORT}
+    working_dir: /data/app
+    command: "npm start"
+
+  importer:
+    image: node:current-alpine
+    networks:
+      - main
+    depends_on:
+      - mongo
+      - mariadb
+    volumes:
+      - ./:/data/app
+    working_dir: /data/app
+    command: "npm run import"
+
+
+volumes:
+  nosql-data: {}
+  nosql-replica-1-data: {}
+  nosql-replica-2-data: {}
+  sql-data: {}
+networks:
+  main: {}

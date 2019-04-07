@@ -1,0 +1,17 @@
+<form class="example-form">
+  <mat-form-field id="search_bar">
+    <input type="text" placeholder="Votre recherche" aria-label="Number" [formControl]="searchControl" matInput [matAutocomplete]="auto">
+    <i class="fa fa-search"></i>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onOptionSelected($event)">
+      <mat-option *ngIf="places.length === 0" disabled>
+        Aucun résultat. Affinez ou modifiez votre recherche.
+      </mat-option>
+      <mat-option *ngFor="let place of places" [value]="place" >
+        {{displayFn(place)}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+<app-stations-map *ngIf="stations.length > 0" [stations]="stations" [place]="selectedPlace"></app-stations-map>
+<app-stations-table *ngIf="stations.length > 0" [stations]="stations" [displayDistance]="true"></app-stations-table>
+

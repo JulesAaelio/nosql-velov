@@ -1,0 +1,19 @@
+table,
+#search_bar {
+  width: 100%;
+}
+
+
+.iconed-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .fa {
+    width: 2em;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
