@@ -22,7 +22,7 @@ A l'inverse, les coordonnées géographiques dès lors qu'il s'agit d'une latitu
 
 Ci-après le schéma de données: 
 
-SCHEMA 
+![db scheme](images/db-scheme.png)
 
 
 # Les fonctionnalités 
@@ -44,19 +44,22 @@ contexte de production il sera nécéssaire d'instancier les différents membres
 
 ## Interface utilisateur
 ### Liste et carte des stations :
-- La liste des statioins est triable grâce aux en-têtes du tableau. 
+- La liste des stations est triable grâce aux en-têtes du tableau. 
 - Les marqueurs sont regroupés lorsque l'on réduit l'échelle de la garte. 
 
-IMAGE 
+![all stations shown on map and listed in a table](images/all-stations.png)
 
 ### Recherche des stations proches d'un point d'intérêt : 
 1. Entrer quelques caractères dans la barre de recherche. 
 2. Séléctionner le point d'intérêt parmi les suggestions. 
 3. Les stations les plus proches sont listées et affichées sur la carte.
 
-IMAGE 
+![db scheme](images/near-stations-search.png)\
+\
+![db scheme](images/near-stations.png)
+
 
 
 # Documentations d'installation. 
-Frontend : [frontend/README.md]()\
-Backend : [backend/README.md]()
+Frontend : [frontend/README.md](frontend/README.md)\
+Backend : [backend/README.md](backend/README.md)

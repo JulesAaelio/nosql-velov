@@ -3,6 +3,7 @@ import {Station} from "../models/Station";
 import {ApiService} from "../api.service";
 import {MapsAPILoader} from "@agm/core";
 import {Place} from "../models/Place";
+import {Geometry} from "../models/Geometry";
 declare var google;
 @Component({
   selector: 'app-all-stations',
@@ -23,7 +24,9 @@ export class AllStationsComponent implements OnInit {
     });
     navigator.geolocation.getCurrentPosition((position) => {
       const place = new Place();
-      place.geometry.coordinates = [position.coords.latitude, position.coords.longitude];
+      place.geometry = new Geometry();
+      place.geometry.coordinates = [position.coords.longitude, position.coords.latitude];
+      this.place = place;
     });
 
 
