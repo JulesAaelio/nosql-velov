@@ -2,8 +2,12 @@
 
 REST API developped in Node.js
 
-## Installation 
+## Installation
+### Requirements 
 To use this project you' ll need [docker](https://docs.docker.com/install/) and [docker-compose](https://docs.docker.com/compose/install/) installed. 
+
+### Environment variables 
+copy `.env.dist` file into `.env` and update it with your own values. 
 
 ## Note
 To be efficient the instances of a mongodb cluster need to be installed on different physical machines, 
