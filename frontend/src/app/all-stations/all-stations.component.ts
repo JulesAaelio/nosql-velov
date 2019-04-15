@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Station} from "../models/Station";
 import {ApiService} from "../api.service";
 import {MapsAPILoader} from "@agm/core";
+import {Place} from "../models/Place";
 declare var google;
 @Component({
   selector: 'app-all-stations',
@@ -11,6 +12,7 @@ declare var google;
 export class AllStationsComponent implements OnInit {
 
   stations: Station[] = [];
+  place = null;
 
 
   constructor(private api: ApiService, private maps: MapsAPILoader) { }
@@ -19,9 +21,10 @@ export class AllStationsComponent implements OnInit {
     this.api.getAllStations().subscribe((stations) => {
       this.stations = stations;
     });
-    // let google;
-
-
+    navigator.geolocation.getCurrentPosition((position) => {
+      const place = new Place();
+      place.geometry.coordinates = [position.coords.latitude, position.coords.longitude];
+    });
 
 
   }

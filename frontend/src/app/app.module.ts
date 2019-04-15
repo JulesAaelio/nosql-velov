@@ -21,6 +21,7 @@ import { StationsNearComponent } from './stations-near/stations-near.component';
 import { AgmCoreModule } from '@agm/core'
 import {environment} from "../environments/environment";
 import { StationsMapComponent } from './stations-map/stations-map.component';
+import {AgmJsMarkerClustererModule} from "@agm/js-marker-clusterer";
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { StationsMapComponent } from './stations-map/stations-map.component';
       // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
       apiKey: environment.map_key
     }),
+    AgmJsMarkerClustererModule
   ],
   providers: [
     ApiService
